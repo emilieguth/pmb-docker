@@ -1,0 +1,41 @@
+services:
+  webserver:
+    container_name: php-pmb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./www:/var/www/html
+    ports:
+      - 8000:80
+    depends_on:
+      - mysql-db
+    networks:
+      - pmb-tier
+
+  mysql-db:
+    container_name: mysql-pmb
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: dev_pmb
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+    ports:
+      - "3308:3306"
+    networks:
+      - pmb-tier
+
+  phpmyadmin:
+    container_name: phpmyadmin-pmb
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql-db
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql-db
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - pmb-tier
+
+networks:
+  pmb-tier:
