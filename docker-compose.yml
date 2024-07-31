@@ -17,13 +17,10 @@ services:
     container_name: mysql-pmb
     image: mysql:8.0
     environment:
-      - MYSQL_DATABASE=dev_pmb
+      - MYSQL_DATABASE=pmb
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_AUTHENTICATION_PLUGIN=mysql_native_password
       - ALLOW_EMPTY_PASSWORD=yes
-    #environment:
-    # MYSQL_DATABASE: dev_pmb
-    #  MYSQL_ALLOW_EMPTY_PASSWORD: true
     ports:
       - "3308:3306"
     networks:
