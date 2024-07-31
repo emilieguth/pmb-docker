@@ -5,8 +5,13 @@ RUN apt-get -y update
 RUN apt-get -y install git
 # Enable Apache modules
 RUN a2enmod rewrite
+
 # Install any extensions you need
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN apt-get -y update \
+&& apt-get install -y libicu-dev \
+&& docker-php-ext-configure intl \
+&& docker-php-ext-install intl \
+&& docker-php-ext-install mysqli pdo pdo_mysql
 
 # Install Node.js
 COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
