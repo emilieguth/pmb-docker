@@ -1,3 +1,4 @@
 [submodule "src"]
 	path = src
 	url = git@github.com:rodolpheAV/ludo-stamant.git
+	ignore = dirty

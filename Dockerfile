@@ -29,3 +29,7 @@ COPY ../www .
 # Install any dependencies (to be run in the container)
 #RUN composer update tecnickcom/tcpdf --ignore-platform-reqs
 #RUN composer install --ignore-platform-reqs
+
+RUN npm install
+RUN npm i -g npx
+RUN npm run customstylesbuild
